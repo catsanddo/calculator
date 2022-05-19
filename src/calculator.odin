@@ -1,10 +1,10 @@
 package calculator
 
 import "core:fmt"
-import "core:os"
 import "core:io"
 import "core:strings"
 import "core:strconv"
+import "input"
 
 Token_Type :: enum {
     OPEN_PAREN,
@@ -20,19 +20,6 @@ Token_Type :: enum {
 Token :: struct {
     token_type: Token_Type,
     value: f64,
-}
-
-get_line :: proc() -> (result: string) {
-    reader := io.to_rune_reader(os.stream_from_handle(os.stdin))
-    builder := strings.make_builder()
-
-    for ch, _, err := io.read_rune(reader); ch != '\n'; ch, _, err = io.read_rune(reader) {
-        strings.write_rune_builder(&builder, ch)
-    }
-
-    result = strings.to_string(builder)
-
-    return result
 }
 
 tokenize :: proc(source: string) -> []Token {
@@ -101,7 +88,7 @@ swallow_number :: proc(reader: ^strings.Reader) -> (num: f64) {
 }
 
 main :: proc() {
-    foo := "(5  +6/7*4-  5(a))"
+    foo := input.get_line()
     tokens := tokenize(foo)
     for elem in tokens {
         fmt.println(elem)

@@ -32,6 +32,6 @@ odin build src -out:bin/calculator
 
 if [[ $? -eq 0 ]] && [[ -n $should_run ]]; then
     bin/calculator
-else
-    exit 1
 fi
+
+exit $?
