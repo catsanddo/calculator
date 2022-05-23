@@ -2,10 +2,10 @@
     "collections": [
         {
             "name": "core",
-            "path": "/home/catsanddo/Misc/Odin/core"
-        }
+            "path": "/usr/lib/odin/core"
+        },
         {
-            "name": "share",
+            "name": "src",
             "path": "src"
         }
     ],
